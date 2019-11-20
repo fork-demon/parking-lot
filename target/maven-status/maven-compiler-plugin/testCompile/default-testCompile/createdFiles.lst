@@ -1,5 +1,0 @@
-services/AppTest.class
-services/framework/EventDispatcherTest.class
-services/framework/EventHandlerTest.class
-services/framework/QueryRequestProcessorTest.class
-services/event/EventTest.class
