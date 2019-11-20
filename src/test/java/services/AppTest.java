@@ -22,7 +22,10 @@
  */
 package services;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import services.db.InMemoryDB;
 
 import java.io.IOException;
 
@@ -34,5 +37,14 @@ public class AppTest {
   public void test() throws IOException {
     String[] args = {};
     App.main(args);
+  }
+  @AfterEach
+  public void clear(){
+    InMemoryDB.getInstance().clear();
+  }
+
+  @AfterAll
+  public void clearAfterAll(){
+    InMemoryDB.getInstance().clear();
   }
 }

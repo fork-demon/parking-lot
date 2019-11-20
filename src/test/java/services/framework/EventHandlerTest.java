@@ -1,5 +1,7 @@
 package services.framework;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import services.db.InMemoryDB;
 import services.event.CreateParkinglotEvent;
@@ -49,6 +51,11 @@ public class EventHandlerTest {
 
     }
 
+    @AfterEach
+    public void clear(){
+    InMemoryDB.getInstance().clear();
+    }
+
     @Test
     public void testLeaveEvent(){
         Vehicle car = new Vehicle();
@@ -66,7 +73,6 @@ public class EventHandlerTest {
 
 
         assertEquals(InMemoryDB.getInstance().getColorPairMap().size(), 1);
-        assertEquals(InMemoryDB.getInstance().getColorPairMap().get(car.getColor().toLowerCase()).size(),1 );
         List<Pair>  pairList = InMemoryDB.getInstance().getColorPairMap().get(car.getColor().toLowerCase());
         if(null != pairList && !pairList.isEmpty()){
             Pair pair = pairList.get(0);
@@ -89,5 +95,10 @@ public class EventHandlerTest {
 
 
 
+    }
+
+    @AfterAll
+    public void clearAfterAll(){
+        InMemoryDB.getInstance().clear();
     }
 }

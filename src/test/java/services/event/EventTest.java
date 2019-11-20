@@ -22,7 +22,10 @@
  */
 package services.event;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import services.db.InMemoryDB;
 import services.model.Vehicle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -57,5 +60,13 @@ public class EventTest {
     CreateParkinglotEvent createParkinglotEvent = new CreateParkinglotEvent(6);
     assertEquals(CreateParkinglotEvent.class, createParkinglotEvent.getType());
 
+  }
+  @AfterEach
+  public void clear(){
+    InMemoryDB.getInstance().clear();
+  }
+  @AfterAll
+  public void clearAfterAll(){
+    InMemoryDB.getInstance().clear();
   }
 }

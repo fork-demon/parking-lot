@@ -1,5 +1,7 @@
 package services.framework;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import services.db.InMemoryDB;
 import services.facade.QueryRequestProcessor;
@@ -86,4 +88,12 @@ public class QueryRequestProcessorTest {
 
     }
 
+    @AfterEach
+    public void clear(){
+        InMemoryDB.getInstance().clear();
+    }
+    @AfterAll
+    public void clearAfterAll(){
+        InMemoryDB.getInstance().clear();
+    }
     }

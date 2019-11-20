@@ -2,7 +2,10 @@
 package services.framework;
 
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import services.db.InMemoryDB;
 import services.event.CreateParkinglotEvent;
 import services.event.LeaveEvent;
 import services.event.ParkEvent;
@@ -24,6 +27,11 @@ public class EventDispatcherTest {
    * This unit test should register events and event handlers correctly with the event dispatcher
    * and events should be dispatched accordingly.
    */
+
+  @AfterEach
+  public void clear(){
+    InMemoryDB.getInstance().clear();
+  }
   @Test
   public void testEventDriverPattern() {
 
@@ -57,6 +65,11 @@ public class EventDispatcherTest {
     dispatcher.dispatch(leaveEvent);
     verify(leaveEventHandler).onEvent(leaveEvent);
     verify(dispatcher).dispatch(leaveEvent);
+  }
+
+  @AfterAll
+  public void clearAfterAll(){
+    InMemoryDB.getInstance().clear();
   }
 
 }
